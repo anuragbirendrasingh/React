@@ -1,11 +1,11 @@
 import React from 'react'
-import { RootComp } from './Components/DynamicCard'
-import { MainCom } from './Components/Comp_1'
+import Header from './Components/Header'
+import Body from './Components/Body'
 const App = () => {
   return (
     <div>
-      {/* <MainCom/> */}
-      <RootComp/>
+       <Header/>
+       <Body/>
     </div>
   )
 }
