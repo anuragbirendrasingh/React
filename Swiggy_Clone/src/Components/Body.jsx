@@ -1,9 +1,10 @@
-
 import React, { useEffect, useState } from "react";
 import { RES_URL } from "../utils/common_url";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
+  const [res, setSearchRes] = useState("");
 
   useEffect(() => {
     jsonData();
@@ -25,20 +26,34 @@ const Body = () => {
     setRestaurants(extracted);
   };
 
-  if(restaurants.length === 0){
-    return(<h1>Loading....</h1>)
+  const filteredRes = restaurants.filter((item) => {
+    return item.name.toLowerCase().includes(res.toLowerCase());
+  });
+
+  if (restaurants.length === 0) {
+    return <Shimmer />;
   }
 
   return (
-    <div>
-      <div>
-        <input type="text" placeholder="search..." />
+    <div className="p-6">
+
+      {/* Search Box */}
+      <div className="mb-6">
+        <input
+          type="text"
+          placeholder="Search restaurants..."
+          value={res}
+          onChange={(e) => setSearchRes(e.target.value)}
+          className="border border-gray-400 rounded-lg px-4 py-2 w-80 
+                     outline-none focus:ring-2 focus:ring-orange-500"
+        />
       </div>
 
-  
+      {/* Restaurants Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 
+                      lg:grid-cols-4 gap-6">
 
-      <div className="resContainer">
-        {restaurants.map((restaurant) => {
+        {filteredRes.map((restaurant) => {
           const {
             id,
             name,
@@ -50,14 +65,36 @@ const Body = () => {
           } = restaurant;
 
           return (
-            <div className="res" key={id}>
-              <h1>{name}</h1>
-              <img src={RES_URL + cloudinaryImageId} alt={name} />
+            <div
+              key={id}
+              className="bg-white rounded-xl shadow-md p-4 cursor-pointer 
+                         hover:scale-105 transition-all duration-200"
+            >
+              <img
+                src={RES_URL + cloudinaryImageId}
+                alt={name}
+                className="w-full h-40 object-cover rounded-lg mb-3"
+              />
 
-              <p>{cuisines?.join(", ")}</p>
-              <h4>{areaName}</h4>
-              <h3>{costForTwo}</h3>
-              <h5>{avgRating}</h5>
+              <h1 className="font-semibold text-lg mb-1">{name}</h1>
+
+              <p className="text-sm text-gray-600">
+                {cuisines?.join(", ")}
+              </p>
+
+              <h4 className="text-sm text-gray-500">{areaName}</h4>
+
+              <div className="flex justify-between mt-2 items-center">
+                <h3 className="font-medium">{costForTwo}</h3>
+
+                <span
+                  className={`px-2 py-1 rounded-md text-white text-sm ${
+                    avgRating >= 4 ? "bg-green-500" : "bg-orange-500"
+                  }`}
+                >
+                  ⭐ {avgRating}
+                </span>
+              </div>
             </div>
           );
         })}
