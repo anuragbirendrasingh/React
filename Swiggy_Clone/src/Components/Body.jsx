@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { RES_URL } from "../utils/common_url";
+import { Image_Base_URL } from "../utils/common_url";
 import Shimmer from "./Shimmer";
 
 const Body = () => {
@@ -37,7 +37,7 @@ const Body = () => {
   return (
     <div className="p-6">
 
-      {/* Search Box */}
+
       <div className="mb-6">
         <input
           type="text"
@@ -49,7 +49,7 @@ const Body = () => {
         />
       </div>
 
-      {/* Restaurants Grid */}
+      
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 
                       lg:grid-cols-4 gap-6">
 
@@ -71,7 +71,7 @@ const Body = () => {
                          hover:scale-105 transition-all duration-200"
             >
               <img
-                src={RES_URL + cloudinaryImageId}
+                src={Image_Base_URL + cloudinaryImageId}
                 alt={name}
                 className="w-full h-40 object-cover rounded-lg mb-3"
               />
