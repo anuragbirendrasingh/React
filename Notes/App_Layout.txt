@@ -1,0 +1,46 @@
+src/
+│
+├── components/
+│   ├── common/
+│   │   ├── Navbar.jsx
+│   │   ├── Footer.jsx
+│   │   └── Shimmer.jsx
+│   │
+│   ├── restaurant/
+│   │   ├── RestaurantCard.jsx
+│   │   ├── RestaurantList.jsx
+│   │   └── FilterBar.jsx
+│   │
+│   └── home/
+│       ├── Banner.jsx
+│       ├── TopCategories.jsx
+│       └── PromoStrip.jsx
+│
+├── pages/
+│   ├── Home.jsx
+│   ├── RestaurantPage.jsx
+│   ├── Search.jsx
+│   ├── Cart.jsx
+│   └── NotFound.jsx
+│
+├── hooks/
+│   ├── useHomeData.js
+│   ├── useRestaurantData.js
+│   └── useOnlineStatus.js
+│
+├── utils/
+│   ├── constants.js
+│   ├── common_url.js
+│   └── helpers.js
+│
+├── context/
+│   ├── UserContext.jsx
+│   ├── CartContext.jsx
+│   └── ThemeContext.jsx
+│
+├── router/
+│   └── AppRouter.jsx
+│
+├── App.jsx
+├── index.jsx
+└── styles.css (or tailwind.css)
